@@ -8,13 +8,13 @@ class Menu
 @window
 	
 	def initialize(window)
+		@window = window
 		@menuPos = 0
 		@menuSeq = seq_init
-		@window = window
 	end
 	
 	def menu_control(id)
-		close if id == Gosu::KbEscape
+		@window.close if id == Gosu::KbEscape
 		@menuPos += 1 if (id == Gosu::KbS) || (id == Gosu::KbD) 
 		@menuPos -= 1 if (id == Gosu::KbW) || (id == Gosu::KbA)
 		if @menuPos == 4

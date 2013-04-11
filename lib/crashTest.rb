@@ -3,15 +3,12 @@ require 'gosu'
 require_relative 'menu'
 
 class GameWindow < Gosu::Window
+	@window
 	def initialize
 		super(800, 600, false)
 		self.caption = "Menu Demo"
-	end
-	
-	def init_menu
 		@menu = Menu.new(self)
 	end
-
 	
 	def update
 	
@@ -28,6 +25,4 @@ class GameWindow < Gosu::Window
 	
 end
 
-MyWindow = GameWindow.new
-MyWindow.init_menu
-MyWindow.show
+GameWindow.new.show
