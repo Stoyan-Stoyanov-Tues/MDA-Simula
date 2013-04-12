@@ -3,7 +3,7 @@ require 'gosu'
 require_relative 'menu'
 
 class GameWindow < Gosu::Window
-	@window
+
 	def initialize
 		super(800, 600, false)
 		self.caption = "Menu Demo"
@@ -11,7 +11,7 @@ class GameWindow < Gosu::Window
 	end
 	
 	def update
-	
+	#	puts Gosu::Song.current_song
 	end
 	
 	def draw
