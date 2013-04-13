@@ -2,7 +2,6 @@ require 'gosu'
 require './point'
 require './virtual_model'
 
-
 class Constructor
 	def	self.create_virtual_model(image)
 	
@@ -36,7 +35,6 @@ class Constructor
 		get_stats(top, bottom, left, right) # return instance of VirtualModel
 	end
 	
-	
 	# returns object with the info about the "actual object" inside an image
 	def self.get_stats(top, bottom, left, right)
 		array = [ 
@@ -53,9 +51,11 @@ class Constructor
 		# build around the "actual object" inside an image
 		radius = array[0][2]/2
 		center = Point.new( (array[0][0].x - array[0][1].x).abs/2 , (array[0][0].y - array[0][1].y).abs/2 )
-		height = bottom.y - top.y
+		height = bottom.y - top.y 
 		width = right.x - left.x
+		distance_centers_x = center.x - width/2  # distance between circle center.x and rectangle center.x
+		distance_centers_y = center.y - height/2 # distance between circle center.y and rectangle center.y  
 		 
-		VirtualModel.new(center, radius, height, width)
+		VirtualModel.new(center, radius, width, height, distance_centers_x, distance_centers_y)
 	end
 end
