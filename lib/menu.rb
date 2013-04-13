@@ -13,10 +13,11 @@ class Menu
 		@window = window
 		@menuPos = 0
 		@menuSeq = seq_init
-		@playlist = plist_init
-		@playlist.play(true)
-		@font = Gosu::Font.new(@window, Gosu::default_font_name, 20)
-		@playlist.stop
+		#@playlist = plist_init
+		#@playlist.play(true)
+		#@font = Gosu::Font.new(@window, Gosu::default_font_name, 20)
+		#@playlist.stop
+		
 	end
 	
 	def menu_control(id)
@@ -32,7 +33,7 @@ class Menu
 	
 	def draw_menu
 		@menuSeq[@menuPos].draw(0,0, 255)
-		@font.draw("Is music being played?: #{@playlist.playing?}", 0, 0, 255, 1.0, 1.0, 0xffffff00)
+		#@font.draw("Is music being played?: #{@playlist.playing?}", 0, 0, 255, 1.0, 1.0, 0xffffff00)
 	end
 		
 	def seq_init
