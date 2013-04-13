@@ -16,13 +16,11 @@ class GameWindow < Gosu::Window
 	end
 	
 	def update
-		#Gosu::Song.new(self, "media/menu/train_interior_1.ogg").play
-	#	puts Gosu::Song.current_song
 	end
 	
 	def draw
 		@menu.draw_menu
-		@font.draw("Is music being paused?: #{@playlist.paused?}", 0, 0, 255, 1.0, 1.0, 0xffffff00)
+		@font.draw("Is a song being currently played?: #{@playlist.playing?}", 0, 0, 255, 1.0, 1.0, 0xffffff00)
 	end
 	
 	def button_down(id)

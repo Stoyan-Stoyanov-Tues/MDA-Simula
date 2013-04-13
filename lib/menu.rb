@@ -13,15 +13,13 @@ class Menu
 		@window = window
 		@menuPos = 0
 		@menuSeq = seq_init
-		#@playlist = plist_init
-		#@playlist.play(true)
-		#@font = Gosu::Font.new(@window, Gosu::default_font_name, 20)
-		#@playlist.stop
+		@sound = Gosu::Sample.new(window, 'media/menu/sfx.ogg')
 		
 	end
 	
 	def menu_control(id)
 		@window.close if id == Gosu::KbEscape
+		@sound.play(1, 1)
 		@menuPos += 1 if (id == Gosu::KbS) || (id == Gosu::KbD) 
 		@menuPos -= 1 if (id == Gosu::KbW) || (id == Gosu::KbA)
 		if @menuPos == 4
@@ -33,7 +31,6 @@ class Menu
 	
 	def draw_menu
 		@menuSeq[@menuPos].draw(0,0, 255)
-		#@font.draw("Is music being played?: #{@playlist.playing?}", 0, 0, 255, 1.0, 1.0, 0xffffff00)
 	end
 		
 	def seq_init
