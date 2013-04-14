@@ -11,10 +11,13 @@ TIME_INTERVAL = 24
 
 @window
 
-@lKeyP #last key press
+@lastKP #last key press
 @keyHold = false #is key currently being held?
 @holdC = 0
-	
+@lockC #lock counter
+
+attr_accessor :lastKP
+
 	def initialize(window)
 		@window = window
 		@menuPos = 0
@@ -23,29 +26,33 @@ TIME_INTERVAL = 24
 		@playlist.play
 		@moveSound = Gosu::Sample.new(@window, 'media/menu/sfx.ogg')
 		@font = Gosu::Font.new(@window, Gosu::default_font_name, 20)
+		@lockC = 0
 		
 	end
 	
-	
-	
 	def key_check(key)
-		if key == @lKeyP
+		if key == @lastKP
 			@keyHold = true
 		else @keyHold = false
 		end
 	end
 	
-	def menu_control_hold(key) #key being currently held
-		@font.draw("font\n", 0, 0, 255, 1.0, 1.0, 0xffffff00)
+	def catch_key(id)
+		@font.draw("font", 0, 0, 255, 1.0, 1.0, 0xffffff00)
+		@lastKP = id
+		self.reposition(id)
+		@keyDown = false
+	end
+	
+	def control_hold(key) #key being currently held
 		self.key_check(key)
 		unless @keyHold
 			@holdC = 0
 			return
 		end
-		if @holdC%TIME_INTERVAL == 0
-			self.reposition(key)
-		end
-		@holdC += 1
+		unless holdLocked?
+			reposition(key)
+		end			
 	end
 	
 	def reposition(key)
@@ -53,20 +60,15 @@ TIME_INTERVAL = 24
 			@menuPos -= 1
 		elsif key == Gosu::KbD or key == Gosu::KbS
 			@menuPos += 1
+		elsif key == Gosu::KbEscape 
+			@window.close
 		end
 		if @menuPos == -1
 			@menuPos = 3
 			return
 		elsif @menuPos == 4
 			@menuPos = 0
-			return
 		end
-	end
-		
-	def catch_key(id)
-		@font.draw("font", 0, 0, 255, 1.0, 1.0, 0xffffff00)
-		@lKeyP = id
-		self.reposition(id)
 	end
 		
 	def draw_menu
@@ -86,4 +88,12 @@ TIME_INTERVAL = 24
 		playlist = Gosu::Song.new(@window, 'media/menu/train-interior-1.wav');
 	end
 	
+	def  holdLocked?		
+		@lockC
+		if @lockC >= 24
+			@lockC = 0
+			return false
+		end
+		return true
+	end
 end
