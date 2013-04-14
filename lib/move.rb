@@ -2,7 +2,7 @@ module Move
  	def init
  		@oposite_move = {:up => :down, :down => :up, :left => :right, :right => :left}
 		@activated_effects = Array.new
-    end
+    	end
     
  	def move(move_type)
 		self.method(move_type).call
