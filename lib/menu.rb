@@ -13,20 +13,19 @@ class Menu
 		@window = window
 		@menuPos = 0
 		@menuSeq = seq_init
-		@sound = Gosu::Sample.new(window, 'media/menu/sfx.ogg')
+		@playlist = Gosu::Song.new(@window, 'media/menu/title_screen.ogg');
+		@playlist.play
+		@moveSound = Gosu::Sample.new(@window, 'media/menu/sfx.ogg')
 		
 	end
-	
-	def menu_control(id)
-		@window.close if id == Gosu::KbEscape
-		@sound.play(1, 1)
-		@menuPos += 1 if (id == Gosu::KbS) || (id == Gosu::KbD) 
-		@menuPos -= 1 if (id == Gosu::KbW) || (id == Gosu::KbA)
-		if @menuPos == 4
-			@menuPos = 0
-			return
+
+	def menu_control
+		#@window.close if button_down? Gosu::KbEscape
+		if @window.button_down? Gosu::KbA or @window.button_down? Gosu::KbW then
+			@menuPos-=1
 		end
 		@menuPos = 3 if @menuPos == -1
+		sleep 0.12
 	end
 	
 	def draw_menu
