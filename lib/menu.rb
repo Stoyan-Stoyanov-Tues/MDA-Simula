@@ -41,6 +41,7 @@ TIME_INTERVAL = 24
 		unless @keyHold
 			@holdC = 0
 			return
+		end
 		if @holdC%TIME_INTERVAL == 0
 			self.reposition(key)
 		end
@@ -50,7 +51,7 @@ TIME_INTERVAL = 24
 	def reposition(key)
 		if key == Gosu::KbA or key == Gosu::KbW
 			@menuPos -= 1
-		elsif key == Gosu::KbD or key.eql == Gosu::KbW
+		elsif key == Gosu::KbD or key == Gosu::KbS
 			@menuPos += 1
 		end
 		if @menuPos == -1
@@ -67,9 +68,7 @@ TIME_INTERVAL = 24
 		@lKeyP = id
 		self.reposition(id)
 	end
-	
-	end
-	
+		
 	def draw_menu
 		@menuSeq[@menuPos].draw(0,0, 255)
 	end
