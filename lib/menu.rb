@@ -13,7 +13,7 @@ TIME_INTERVAL = 24
 
 @lastKP #last key press
 @keyHold = false #is key currently being held?
-@holdC = 0
+@holdC
 @lockC #lock counter
 
 attr_accessor :lastKP
@@ -55,6 +55,7 @@ attr_accessor :lastKP
 	end
 	
 	def reposition(key)
+		@moveSound.play(1,1)
 		if key == Gosu::KbA or key == Gosu::KbW
 			@menuPos -= 1
 		elsif key == Gosu::KbD or key == Gosu::KbS
