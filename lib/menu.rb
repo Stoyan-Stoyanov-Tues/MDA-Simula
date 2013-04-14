@@ -25,21 +25,25 @@ attr_accessor :lastKP
 		@playlist = Gosu::Song.new(@window, 'media/menu/title_screen.ogg');
 		@playlist.play
 		@moveSound = Gosu::Sample.new(@window, 'media/menu/sfx.ogg')
-		@font = Gosu::Font.new(@window, Gosu::default_font_name, 20)
 		@lockC = 0
 		
 	end
 	
 	def key_check(key)
+		
 		if key == @lastKP
 			@keyHold = true
 		else @keyHold = false
 		end
 	end
 	
-	def catch_key(id)
-		@lastKP = id
-		self.reposition(id)
+	def catch_key(key)
+		@lastKP = key
+		if key == Gosu::KbReturn
+			self.apply_option
+			return
+		end
+		self.reposition(key)
 		@keyDown = false
 	end
 	
@@ -50,6 +54,10 @@ attr_accessor :lastKP
 			return
 		end
 		unless holdLocked?
+			if key == Gosu::KbEnter
+				apply_option
+				return
+			end
 			reposition(key)
 		end			
 	end
@@ -70,6 +78,20 @@ attr_accessor :lastKP
 			@menuPos = 0
 		end
 	end
+	
+	def apply_option()
+		case @menuPos
+		when 0
+			return
+		when 1
+			return
+		when 2
+			return
+		when 3
+			@window.close
+		end
+	end
+		
 		
 	def draw_menu
 		@menuSeq[@menuPos].draw(0,0, 255)
