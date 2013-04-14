@@ -8,8 +8,9 @@ module Base_collision
 		y2 = object.pos_y
 		r1 = self.virtual_model.radius
 		r2 = object.virtual_model.radius
-		Gosu::distance(x1, y1, x2, y2).abs - (r1 + r2)
+		(Gosu::distance(x1, y1, x2, y2).abs - (r1 + r2) ) > 0 ? false : true
 	end
+	
 	def rectangle(object)
 		top = self.rectangle_y - self.virtual_model.height/2
 		bottom = self.rectangle_y + self.virtual_model.height/2
@@ -26,6 +27,6 @@ module Base_collision
 		outside_left = left > right_2
 		outside_right = right < left_2
 		
-		outside_top || outside_bottom || outside_left || outside_right
+		!(outside_top || outside_bottom || outside_left || outside_right)
 	end
 end
