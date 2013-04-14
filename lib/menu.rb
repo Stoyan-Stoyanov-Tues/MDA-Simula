@@ -2,12 +2,18 @@ require 'rubygems'
 require 'gosu'
 
 class Menu
+
+TIME_INTERVAL = 24	
+	
 @menuPos
 @menuSeq
 @playlist
 
 @window
 
+@lKeyP #last key press
+@keyHold = false #is key currently being held?
+@holdC = 0
 	
 	def initialize(window)
 		@window = window
@@ -18,14 +24,32 @@ class Menu
 		@moveSound = Gosu::Sample.new(@window, 'media/menu/sfx.ogg')
 		
 	end
-
-	def menu_control
-		#@window.close if button_down? Gosu::KbEscape
-		if @window.button_down? Gosu::KbA or @window.button_down? Gosu::KbW then
-			@menuPos-=1
+	
+	def menu_control_hold(keyHold) #key being currently held
+		unless @keyHold
+			@holdC = 0
+			return
+		if @holdC%TIME_INTERVAL == 0
+			self.reposition(keyHold)
 		end
-		@menuPos = 3 if @menuPos == -1
-		sleep 0.12
+		@holdC += 1
+	end
+	
+	def reposition(key)
+		if key.eql? Gosu::KbA or key.eql? Gosu::KbW
+			@menuPos -= 1
+		elsif key.eql? Gosu::KbD or key.eql? Gosu::KbW
+			@menuPos += 1
+		end
+		if @menuPos == -1
+			@menuPos = 3
+			return
+		elsif @menuPos == 4
+			@menuPos = 0
+			return
+		end
+	end
+		
 	end
 	
 	def draw_menu
