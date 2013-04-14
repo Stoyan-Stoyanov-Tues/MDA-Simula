@@ -14,16 +14,19 @@ class GameWindow < Gosu::Window
 	end
 	
 	def update
-		@menu.menu_control
 	end
 	
 	def draw
 		@menu.draw_menu
 	end
 	
-	#def button_down?(id)
-	#	@menu.menu_control_once(id)
-	#end
+	def button_down?(id)
+		@menu.menu_control_hold(id)
+	end
+	
+	def button_down(id)
+		@menu.catch_key(id)
+	end
 	
 	
 end
