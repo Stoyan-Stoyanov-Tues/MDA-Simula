@@ -89,7 +89,7 @@ attr_accessor :lastKP
 	
 	def  holdLocked?		
 		@lockC += 1
-		if @lockC >= 22
+		if @lockC >= 24
 			@lockC = 0
 			return false
 		end
