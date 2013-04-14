@@ -38,7 +38,6 @@ attr_accessor :lastKP
 	end
 	
 	def catch_key(id)
-		@font.draw("font", 0, 0, 255, 1.0, 1.0, 0xffffff00)
 		@lastKP = id
 		self.reposition(id)
 		@keyDown = false
@@ -89,8 +88,8 @@ attr_accessor :lastKP
 	end
 	
 	def  holdLocked?		
-		@lockC
-		if @lockC >= 24
+		@lockC += 1
+		if @lockC >= 22
 			@lockC = 0
 			return false
 		end
