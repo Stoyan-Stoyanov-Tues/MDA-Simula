@@ -54,8 +54,9 @@ class Constructor
 		height = bottom.y - top.y 
 		width = right.x - left.x
 		distance_centers_x = center.x - width/2  # distance between circle center.x and rectangle center.x
-		distance_centers_y = center.y - height/2 # distance between circle center.y and rectangle center.y  
-		 
-		VirtualModel.new(center, radius, width, height, distance_centers_x, distance_centers_y)
+		distance_centers_y = center.y - height/2 # distance between circle center.y and rectangle center.y
+		preferred_collision = height*width > radius*radius*Math::PI ? :rectangle : :circle
+		  
+		VirtualModel.new(center, radius, width, height, distance_centers_x, distance_centers_y, preferred_collision)
 	end
 end
