@@ -25,15 +25,29 @@ TIME_INTERVAL = 24
 		
 	end
 	
-	def menu_control_hold(keyHold) #key being currently held
+	def catch_key(id)
+		@lKeyP = id
+	end
+	
+	def key_check(key)
+		if key.eql? @lKeyP
+			@keyHold = true
+		else @keyHold = false
+		end
+	end
+	
+	def menu_control_hold(key) #key being currently held
+		self.key_check(key)
 		unless @keyHold
 			@holdC = 0
 			return
 		if @holdC%TIME_INTERVAL == 0
-			self.reposition(keyHold)
+			self.reposition(key)
 		end
 		@holdC += 1
 	end
+	
+	
 	
 	def reposition(key)
 		if key.eql? Gosu::KbA or key.eql? Gosu::KbW
