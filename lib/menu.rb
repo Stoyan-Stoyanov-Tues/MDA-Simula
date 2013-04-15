@@ -5,6 +5,8 @@ class Menu
 
 TIME_INTERVAL = 24	
 	
+@isOn
+
 @menuPos
 @menuSeq
 @playlist
@@ -16,7 +18,7 @@ TIME_INTERVAL = 24
 @holdC
 @lockC #lock counter
 
-attr_accessor :lastKP
+attr_accessor :lastKP, :isOn
 
 	attr_accessor :menu_active
 
@@ -30,6 +32,7 @@ attr_accessor :lastKP
 		@lockC = 0
 		@menu_active = true
 		
+		@isOn = true
 	end
 	
 	def key_check(key)
@@ -72,7 +75,7 @@ attr_accessor :lastKP
 		elsif key == Gosu::KbD or key == Gosu::KbS
 			@menuPos += 1
 		elsif key == Gosu::KbEscape 
-			@menu_active = false
+			self.turn_off
 		end
 		if @menuPos == -1
 			@menuPos = 3
@@ -121,4 +124,16 @@ attr_accessor :lastKP
 		end
 		return true
 	end
+	
+	def turn_on
+		@playlist.play
+		@isOn = true
+	end
+	
+	def turn_off
+		@playlist.pause
+		@isOn = false
+	end
+		
+	
 end
