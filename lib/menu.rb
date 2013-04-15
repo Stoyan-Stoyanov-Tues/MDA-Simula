@@ -127,7 +127,6 @@ attr_accessor :lastKP, :isOn
 	end
 	
 	def turn_on
-		@lastKP = Gosu::KbDelete
 		@playlist.play
 		@isOn = true
 	end
