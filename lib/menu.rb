@@ -88,6 +88,7 @@ attr_accessor :lastKP, :isOn
 	def apply_option()
 		case @menuPos
 		when 0
+			@isOn = false
 			return
 		when 1
 			return
