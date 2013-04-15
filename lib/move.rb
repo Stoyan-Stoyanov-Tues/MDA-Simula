@@ -1,6 +1,6 @@
 module Move
- 	def init
- 		@oposite_move = {:up => :down, :down => :up, :left => :right, :right => :left}
+	def init
+		@oposite_move = {:up => :down, :down => :up, :left => :right, :right => :left}
 		@activated_effects = Array.new
 		@jumping = false
 	
@@ -12,14 +12,14 @@ module Move
 		
 		@velocity_x = @speed*@scale_x	
 		@velocity_y = @speed*@scale_y
-    end
-    def moving
-    	# while the jumping is active, the object cannot fall
+	end
+	def moving
+		# while the jumping is active, the object cannot fall
 		if @jumping
 			self.down
 			if try_move? # if the move is successful
 				@velocity_y+=@gravity
-				
+
 				@activated_effects.each { |effect| effect.do_effect(self) }
 				@activated_effects.clear
 			else # the object had collision with the ground or with the roof 
@@ -41,8 +41,8 @@ module Move
 			end
 		end
 		move(:left ) if $window.button_down?(Gosu::KbLeft)
-    	move(:right) if $window.button_down?(Gosu::KbRight)
-    end
+		move(:right) if $window.button_down?(Gosu::KbRight)
+	end
     
  	def move(move_type)
 		self.method(move_type).call
