@@ -1,4 +1,7 @@
 require 'gosu'
+require './player'
+require './tile'
+require './sprite'
 require './point'
 require './virtual_model'
 
@@ -60,5 +63,26 @@ class Constructor
 		preferred_collision = height*width > radius*radius*Math::PI ? :circle : :rectangle
 		  
 		VirtualModel.new(image, center, radius, width, height, distance_centers_x, distance_centers_y, preferred_collision)
+	end
+	
+	def self.create_animations(window, tiles, width, height, order)
+		animations = {}
+		order.each { |type| animations[type] = Array.new }
+		loaded_tiles = Gosu::Image.load_tiles(window, tiles, width, height, false)
+		loaded_tiles.each_with_index { |elem, index| animations[ order[index] ] << self.create_virtual_model(elem)}
+		animations
+	end
+	
+	def self.sprite(window, tiles, width, height, order, do_collision, solid, virtual_model, pos_x, pos_y, move_distance)
+		animations = self.create_animations(window, tiles, width, height, order)
+		Sprite.new(do_collision, solid, virtual_model, pos_x, pos_y, move_distance, animations)
+	end
+	
+	def self.player
+	
+	end
+	
+	def self.tile
+	
 	end
 end
