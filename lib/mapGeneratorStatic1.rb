@@ -1,4 +1,5 @@
 require 'gosu'
+require 'rubygems'
 require 'texplay'
 require './point'
 require './constructor'
@@ -9,15 +10,21 @@ require './sprite'
 require 'benchmark'
 # require './game'
 require './player'
+require_relative 'menu'
 
 class GameWindow < Gosu::Window
 	def initialize width, height, fullscreen = false
+		
+		
 		$window = self
 		@width = width
 		@height = height
 		@fullscreen = fullscreen	
 
 		super(@width, @height, @fullscreen)
+		
+		self.caption = "Menu Demo"
+		@menu = Menu.new(self)
 
 		$map = Map.new
 
@@ -60,10 +67,21 @@ class GameWindow < Gosu::Window
 	end
 	def update
 		$map.each { |object| object.update }
+		
+		#@menu.menu_active = true if self.button_down(Gosu::KbEscape)
+		
+		if button_down?(@menu.lastKP)
+			@menu.control_hold(@menu.lastKP)
+		end
 	end
 
 	def draw
 		$map.each { |object| object.draw }
+		@menu.draw_menu if @menu.menu_active
+	end
+	
+	def button_down(id)
+		@menu.catch_key(id)
 	end
 end
 game = GameWindow.new(800, 600)
