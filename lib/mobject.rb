@@ -17,6 +17,8 @@ class Mobject
 	
 	# every object can be "drawn"
 	def draw
+		@virtual_model.image.draw_rot(@pos_x, @pos_y, 0, 0,
+		 1-@virtual_model.center.x.to_f/@virtual_model.image.width, 1-@virtual_model.center.y.to_f/@virtual_model.image.height)
 	end
 	
 	# every object can be "update

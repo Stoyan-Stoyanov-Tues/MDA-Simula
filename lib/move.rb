@@ -4,15 +4,16 @@ module Move
 		@activated_effects = Array.new
 		@jumping = false
 	
-		@speed = 10
+		@speed = 5
 		@gravity = 3
 		
 		@scale_x = Math.cos(0 * Math::PI / 180)
 		@scale_y = Math.sin(90 * Math::PI / 180)
 		
 		@velocity_x = @speed*@scale_x	
-		@velocity_y = @speed*@scale_y
+		@velocity_y = 3*@speed*@scale_y
 	end
+	
 	def moving
 		# while the jumping is active, the object cannot fall
 		if @jumping
@@ -35,13 +36,13 @@ module Move
 				@activated_effects.each { |effect| effect.do_effect(self) }
 				@activated_effects.clear
 			end
-			if $window.button_down?(Gosu::KbSpace) # new jumping is assigned
-				@velocity_y = -10
+			if self.command?(Gosu::KbSpace) # new jumping is assigned
+				@velocity_y = -20
 				@jumping = true
 			end
 		end
-		move(:left ) if $window.button_down?(Gosu::KbLeft)
-		move(:right) if $window.button_down?(Gosu::KbRight)
+		move(:left ) if self.command?(Gosu::KbLeft)
+		move(:right) if self.command?(Gosu::KbRight)
 	end
     
  	def move(move_type)

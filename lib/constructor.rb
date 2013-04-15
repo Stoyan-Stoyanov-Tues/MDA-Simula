@@ -32,11 +32,11 @@ class Constructor
 			end
 		end
 		
-		get_stats(top, bottom, left, right) # return instance of VirtualModel
+		get_stats(image, top, bottom, left, right) # return instance of VirtualModel
 	end
 	
 	# returns object with the info about the "actual object" inside an image
-	def self.get_stats(top, bottom, left, right)
+	def self.get_stats(image, top, bottom, left, right)
 		array = [ 
  			 [top, bottom, Gosu::distance(top.x, top.y, bottom.x, bottom.y) ],
 			 [top, left, Gosu::distance(top.x, top.y, left.x, left.y) ],
@@ -59,6 +59,6 @@ class Constructor
 		p radius*radius*Math::PI
 		preferred_collision = height*width > radius*radius*Math::PI ? :circle : :rectangle
 		  
-		VirtualModel.new(center, radius, width, height, distance_centers_x, distance_centers_y, preferred_collision)
+		VirtualModel.new(image, center, radius, width, height, distance_centers_x, distance_centers_y, preferred_collision)
 	end
 end
