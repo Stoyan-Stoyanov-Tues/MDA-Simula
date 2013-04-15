@@ -131,7 +131,7 @@ attr_accessor :lastKP, :isOn
 	end
 	
 	def turn_off
-		@playlist.pause
+		@playlist.stop
 		@isOn = false
 	end
 		
