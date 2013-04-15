@@ -14,14 +14,17 @@ class GameWindow < Gosu::Window
 	end
 	
 	def update
+		if button_down?(@menu.lastKP)
+			@menu.control_hold(@menu.lastKP)
+		end
 	end
 	
 	def draw
 		@menu.draw_menu
 	end
 	
-	def button_down?(id)
-		@menu.menu_control_hold(id)
+	def 
+		@menu.control_hold(id)
 	end
 	
 	def button_down(id)
