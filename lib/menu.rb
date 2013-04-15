@@ -131,6 +131,7 @@ attr_accessor :lastKP, :isOn
 	end
 	
 	def turn_off
+		#useless_comment
 		@playlist.stop
 		@isOn = false
 	end
