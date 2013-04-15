@@ -25,8 +25,8 @@ $map = Map.new
 @y = 418
 @x2 = 456
 @y2 = 476
-@x3 = 510
-@y3 = 416
+@x3 = 512
+@y3 = 415
 @tile0 = Gosu::Image.new(self, 'media/tiles/tile0.bmp', false)
 
 # add some tiles ... or the objects will fall down
@@ -36,6 +36,8 @@ $map = Map.new
 @jumpStone = Tile.new(true, true, @model, @x, @y)
 @jumpStone2 = Tile.new(true, true, @model, @x2, @y2)
 @jumpStone3 = Tile.new(true, true, @model, @x3, @y3)
+@jumpStone4 = Tile.new(true, true, @model, @x3+64, @y3)
+@jumpStone5 = Tile.new(true, true, @model, @x3+128, @y3)
 
 def draw_line_one
 	@stoneA = Array.new
@@ -55,6 +57,8 @@ def draw
 	@jumpStone.draw
 	@jumpStone2.draw
 	@jumpStone3.draw
+	@jumpStone4.draw
+	@jumpStone5.draw
 end
 end
 
