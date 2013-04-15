@@ -22,40 +22,43 @@ super(@width, @height, @fullscreen)
 $map = Map.new
 
 @x = 32
-@y = 568
-@x2 = 96
-@y2 = 568
-@x3 = 160
-@y3 = 568
-
+@y = 418
+@x2 = 456
+@y2 = 476
+@x3 = 510
+@y3 = 416
 @tile0 = Gosu::Image.new(self, 'media/tiles/tile0.bmp', false)
 
 # add some tiles ... or the objects will fall down
 
 @model = Constructor::create_virtual_model(@tile0)
-@model2 = Constructor::create_virtual_model(@tile0)
-@model3 = Constructor::create_virtual_model(@tile0)
 
-@stone = Tile.new(true, true, @model, @x, @y)
-@stone2 = Tile.new(true, true, @model2, @x2, @y2)
-@stone3 = Tile.new(true, true, @model2, @x3, @y3)
+@jumpStone = Tile.new(true, true, @model, @x, @y)
+@jumpStone2 = Tile.new(true, true, @model, @x2, @y2)
+@jumpStone3 = Tile.new(true, true, @model, @x3, @y3)
 
-$map.add(@stone)
-$map.add(@stone2)
-$map.add(@stone3)
+def draw_line_one
+	@stoneA = Array.new
+	for i in 0..12
+		@stoneA[i] = Tile.new(true, true, @model, i*64-32, 568)
+	end
+end	
 
 def update
-@stone.update
-@stone2.update
-@stone3.update
+	
+end
+
+def draw
+	for i in 0..12
+		@stoneA[i].draw
+	end
+	@jumpStone.draw
+	@jumpStone2.draw
+	@jumpStone3.draw
+end
+end
 
 end
-def draw
-@stone.draw
-@stone2.draw
-@stone3.draw
-end
-end
-end
 game = GameWindow.new(800, 600)
+game.draw_line_one
 game.show
