@@ -14,15 +14,15 @@ require_relative 'menu'
 
 class GameWindow < Gosu::Window
 	def initialize width, height, fullscreen = false
-		
-		
+
+
 		$window = self
 		@width = width
 		@height = height
 		@fullscreen = fullscreen	
 
 		super(@width, @height, @fullscreen)
-		
+
 		self.caption = "Menu Demo"
 		@menu = Menu.new(self)
 
@@ -36,7 +36,7 @@ class GameWindow < Gosu::Window
 		@y3 = 415
 
 		@tile0 = Gosu::Image.new(self, 'media/tiles/tile0.bmp', false)
-		@image = Gosu::Image.new(self, 'media/sprites/drabon.png', false)
+		@image = Gosu::Image.new(self, 'pr4.png', false)
 
 		@model = Constructor::create_virtual_model(@tile0)
 		@player_model = Constructor::create_virtual_model(@image)
@@ -54,7 +54,7 @@ class GameWindow < Gosu::Window
 		$map.add(@jumpStone4)
 		$map.add(@jumpStone5)
 		$map.add(@player)
-		
+
 		draw_line_one
 	end
 
@@ -66,31 +66,20 @@ class GameWindow < Gosu::Window
 		end
 	end
 	def update
-		
-		
-		#@menu.turn_on if self.button_down(Gosu::KbEscape)
 		$map.each { |object| object.update }
-		if @menu.isOn
-			if button_down?(@menu.lastKP)
-				@menu.control_hold(@menu.lastKP)
-			end
+
+		#@menu.menu_active = true if self.button_down(Gosu::KbEscape)
+
+		if button_down?(@menu.lastKP)
+			@menu.control_hold(@menu.lastKP)
 		end
 	end
 
 	def draw
-		if @menu.isOn
-			@menu.draw_menu
-			return
-		end
-		unless @menu.isOn
-			if @menu.lastKP == Gosu::KbP
-				@menu.turn_on
-				return
-			end
-		end
 		$map.each { |object| object.draw }
+		@menu.draw_menu if @menu.menu_active
 	end
-	
+
 	def button_down(id)
 		@menu.catch_key(id)
 	end
