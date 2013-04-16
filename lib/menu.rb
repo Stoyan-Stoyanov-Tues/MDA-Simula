@@ -69,33 +69,37 @@ attr_accessor :lastKP, :isOn
 	end
 	
 	def reposition(key)
-		@moveSound.play(1,1)
-		if key == Gosu::KbA or key == Gosu::KbW
-			@menuPos -= 1
-		elsif key == Gosu::KbD or key == Gosu::KbS
-			@menuPos += 1
-		elsif key == Gosu::KbEscape 
-			self.turn_off
-		end
-		if @menuPos == -1
-			@menuPos = 3
-			return
-		elsif @menuPos == 4
-			@menuPos = 0
+		if @isOn
+			@moveSound.play(1,1)
+			if key == Gosu::KbA or key == Gosu::KbW
+				@menuPos -= 1
+			elsif key == Gosu::KbD or key == Gosu::KbS
+				@menuPos += 1
+			elsif key == Gosu::KbEscape 
+				self.turn_off
+			end
+			if @menuPos == -1
+				@menuPos = 3
+				return
+			elsif @menuPos == 4
+				@menuPos = 0
+			end
 		end
 	end
 	
 	def apply_option()
-		case @menuPos
-		when 0
-			@isOn = false
-			return
-		when 1
-			return
-		when 2
-			return
-		when 3
-			@window.close
+		if @isOn
+			case @menuPos
+			when 0
+				@isOn = false
+				return
+			when 1
+				return
+			when 2
+				return
+			when 3
+				@window.close
+			end
 		end
 	end
 		
