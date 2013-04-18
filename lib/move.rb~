@@ -43,6 +43,7 @@ module Move
 		end
 		move(:left ) if self.command?(Gosu::KbLeft)
 		move(:right) if self.command?(Gosu::KbRight)
+		
 	end
     
  	def move(move_type)

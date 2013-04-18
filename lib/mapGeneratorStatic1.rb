@@ -37,23 +37,27 @@ class GameWindow < Gosu::Window
 
 		@tile0 = Gosu::Image.new(self, 'media/tiles/tile0.bmp', false)
 		@image = Gosu::Image.new(self, 'media/sprites/drabon.png', false)
+		@sprite = Gosu::Image.new(self, 'pr4.png', false)
 
 		@model = Constructor::create_virtual_model(@tile0)
 		@player_model = Constructor::create_virtual_model(@image)
-
+		@sprite_model = Constructor::create_virtual_model(@sprite)
 		@jumpStone = Tile.new(true, true, @model, @x, @y)
 		@jumpStone2 = Tile.new(true, true, @model, @x2, @y2)
 		@jumpStone3 = Tile.new(true, true, @model, @x3, @y3)
 		@jumpStone4 = Tile.new(true, true, @model, @x3+64, @y3)
 		@jumpStone5 = Tile.new(true, true, @model, @x3+128, @y3)
 		@player = Player.new(true, true, @player_model, 100, 100, 5, Hash.new)
+		@sprite = Sprite.new(true, true, @sprite_model, 100, 300, 5, Hash.new)
 
 		$map.add(@jumpStone)
 		$map.add(@jumpStone2)
 		$map.add(@jumpStone3)
 		$map.add(@jumpStone4)
 		$map.add(@jumpStone5)
+		$map.add(@sprite)
 		$map.add(@player)
+		
 		
 		draw_line_one
 	end

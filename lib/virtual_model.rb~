@@ -1,5 +1,5 @@
 class VirtualModel
-	attr_accessor :image, :center, :radius, :height, :width, :rectangle_center_x , :rectangle_center_y, :collision
+	attr_accessor :image, :center, :radius, :height, :width, :distance_centers_x , :distance_centers_y, :collision
 	
 	def initialize(image, center, radius, width, height, rectangle_center_x, rectangle_center_y, preferred_collision)
 		@center = center

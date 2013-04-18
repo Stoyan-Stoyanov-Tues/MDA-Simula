@@ -60,7 +60,7 @@ class Constructor
 		rectangle_center_y = top.y + height/2
 		# preferred_collision = height*width > radius*radius*Math::PI ? :circle : :rectangle
 		preferred_collision = :rectangle
-		VirtualModel.new(image, center, radius, width, height, rectangle_center_x, rectangle_center_y, preferred_collision)
+		VirtualModel.new(image, center, radius, width, height, distance_centers_x, distance_centers_y, preferred_collision)
 	end
 	
 	def self.create_animations(window, tiles, width, height, order)

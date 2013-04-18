@@ -12,15 +12,15 @@ module Base_collision
 	end
 	
 	def rectangle(object)
-		top = self.pos_y - self.virtual_model.height/2
-		bottom = self.pos_y + self.virtual_model.height/2
-		left = self.pos_x - self.virtual_model.width/2
-		right = self.pos_x + self.virtual_model.width/2
+		top = self.rectangle_y - self.virtual_model.height/2
+		bottom = self.rectangle_y + self.virtual_model.height/2
+		left = self.rectangle_x - self.virtual_model.width/2
+		right = self.rectangle_x + self.virtual_model.width/2
 		
-		top_2 = object.pos_y - object.virtual_model.height/2
-		bottom_2 = object.pos_y + object.virtual_model.height/2
-		left_2 = object.pos_x - object.virtual_model.width/2
-		right_2 = object.pos_x + object.virtual_model.width/2
+		top_2 = object.rectangle_y - object.virtual_model.height/2
+		bottom_2 = object.rectangle_y + object.virtual_model.height/2
+		left_2 = object.rectangle_x - object.virtual_model.width/2
+		right_2 = object.rectangle_x + object.virtual_model.width/2
 		
 		outside_top = top > bottom_2
 		outside_bottom =  bottom < top_2

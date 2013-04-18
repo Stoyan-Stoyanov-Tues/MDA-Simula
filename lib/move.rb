@@ -43,6 +43,7 @@ module Move
 		end
 		move(:left ) if self.command?(Gosu::KbLeft)
 		move(:right) if self.command?(Gosu::KbRight)
+		
 	end
     
  	def move(move_type)
@@ -71,22 +72,18 @@ module Move
  	
 	def left
 		@pos_x-=@velocity_x
-		@rectangle_x-=@velocity_x
 	end
 	
 	def right
 		@pos_x+=@velocity_x
-		@rectangle_x+=@velocity_x
 	end
 	
 	def up
 		@pos_y-=@velocity_y
-		@rectangle_y-=@velocity_y
 	end
 	
 	def down
 		@pos_y+=@velocity_y
-		@rectangle_y+=@velocity_y
 	end
 	
 	def squat
