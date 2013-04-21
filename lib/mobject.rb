@@ -28,10 +28,15 @@ class Mobject
 	end
 	
 	# every object can be "update"
-	def	update 
+	def	update
+		self.destroy()
 	end
 	
 	# in case we need it for every mobject
 	def move(move_type)
+	end
+	
+	def destroy
+		$map.delete(self) if $map.outside?(self)
 	end
 end

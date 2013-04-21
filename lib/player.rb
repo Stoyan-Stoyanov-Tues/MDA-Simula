@@ -1,4 +1,4 @@
-require './sprite.rb'
+require './sprite'
 
 class Player < Sprite
 	def command?(key)

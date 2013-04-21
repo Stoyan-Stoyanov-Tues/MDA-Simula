@@ -37,6 +37,7 @@ class GameWindow < Gosu::Window
 
 		@tile0 = Gosu::Image.new(self, 'media/tiles/tile0.bmp', false)
 		@image = Gosu::Image.new(self, 'media/sprites/drabon.png', false)
+		@bullet = Gosu::Image.new(self, 'bullet.png', false)
 		@sprite = Gosu::Image.new(self, 'pr4.png', false)
 
 		@model = Constructor::create_virtual_model(@tile0)
@@ -70,8 +71,6 @@ class GameWindow < Gosu::Window
 		end
 	end
 	def update
-		
-		
 		#@menu.turn_on if self.button_down(Gosu::KbEscape)
 		$map.each { |object| object.update }
 		if @menu.isOn
@@ -93,6 +92,7 @@ class GameWindow < Gosu::Window
 			end
 		end
 		$map.each { |object| object.draw }
+		@bullet.draw(500, 500, 0)
 	end
 	
 	def button_down(id)
