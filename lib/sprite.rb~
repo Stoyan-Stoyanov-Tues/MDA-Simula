@@ -1,6 +1,8 @@
 require './mobject'
 require './move.rb'
 require './base_collision'
+require './stat'
+require 'time'
 
 class Sprite < Mobject
 	include Move
@@ -8,13 +10,15 @@ class Sprite < Mobject
 	
 	attr_accessor :move_distance
 	
-	def initialize(do_collision, solid, virtual_model, pos_x, pos_y, move_distance, animations, range_attack_image = 'bullet.png')
+	def initialize(do_collision, solid, virtual_model, pos_x, pos_y, animations, range_attack_image = 'bullet.png')
 		super(do_collision, solid, virtual_model, pos_x, pos_y)
-		@move_distance = move_distance
+		@stat = Stat.new
+		@move_distance = @stat.ms
 		@animations = animations
 		self.init	# initialize some instance variables
 		@range_attack_image = Gosu::Image.new($window, range_attack_image, true)
 		@range_attack_model = Constructor.create_virtual_model(@range_attack_image)
+		@last_attack_time = Time.now.usec
 	end
 	
 	def update
@@ -27,19 +31,43 @@ class Sprite < Mobject
 	end
 	
 	def range_attack
-		pos = 0
-		pos = @pos_x - (@virtual_model.width+0.5) if @direction == :left
-		pos = @pos_x + (@virtual_model.width+0.5) if @direction == :right
+		if (Time.now.to_f - @last_attack_time > @stat.as)
+			@last_attack_time = Time.now.to_f
+			pos = 0
+			pos = @pos_x - (@virtual_model.width+0.5) if @direction == :left
+			pos = @pos_x + (@virtual_model.width+0.5) if @direction == :right
 	
-		range_attack = RangeAttack.new(true, false, @range_attack_model, pos, @pos_y, 5, Hash.new, @direction)
-		$map.add(range_attack)
+			range_attack = RangeAttack.new(true, false, @range_attack_model, pos, @pos_y, Hash.new, @direction)
+			$map.add(range_attack)
+		end
 	end
 end
 
 class RangeAttack < Sprite
-	def initialize(do_collision, solid, virtual_model, pos_x, pos_y, move_distance, animations, direction)
-		super(do_collision, solid, virtual_model, pos_x, pos_y, move_distance, animations)
+	def initialize(do_collision, solid, virtual_model, pos_x, pos_y, animations, direction)
+		super(do_collision, solid, virtual_model, pos_x, pos_y, animations)
 		@direction = direction
+	end
+	
+	def init
+		@oposite_move = {:up => :down, :down => :up, :left => :right, :right => :left}
+		
+		@collision_effect
+		@field_effects = Array.new
+		
+		@jumping = false
+		
+		@direction = :right
+	
+		@speed = 10
+	
+		@gravity = Global::GRAVITY
+		
+		@scale_x = Math.cos(0 * Math::PI / 180)
+		@scale_y = Math.sin(90 * Math::PI / 180)
+		
+		@velocity_x = @speed*@scale_x	
+		@velocity_y = @speed*@scale_y
 	end
 	
 	def do_collision_effect(object)
@@ -49,7 +77,7 @@ class RangeAttack < Sprite
 	
 	def update
 		self.moving()
-		#self.destroy()
+		self.destroy()
 	end
 	
 	def moving

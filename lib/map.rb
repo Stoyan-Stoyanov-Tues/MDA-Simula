@@ -1,6 +1,6 @@
 class Map
 	attr_accessor :map
-	def initialize(width = 800, height = 600, width_min = 0, height_min = 0)
+	def initialize(width = 800, height = 600, width_min = -800, height_min = -600)
 		@map = Array.new()
 		@width = width
 		@height = height

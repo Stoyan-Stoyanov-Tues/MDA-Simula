@@ -1,6 +1,7 @@
 require './global'
 
 module Move
+	attr_accessor :velocity_x, :velocity_y, :scale_x, :scale_y
 	def init
 		@oposite_move = {:up => :down, :down => :up, :left => :right, :right => :left}
 		
@@ -11,7 +12,8 @@ module Move
 		
 		@direction = :right
 	
-		@speed = 5
+		@speed = @move_distance
+	
 		@gravity = Global::GRAVITY
 		
 		@scale_x = Math.cos(0 * Math::PI / 180)
@@ -58,7 +60,6 @@ module Move
  	def move(move_type)
 		self.method(move_type).call
 		if try_move?
-			p "TRUE"
 			self.do_field_effects()
 		else
 			self.do_collision_effects()

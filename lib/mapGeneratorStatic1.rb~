@@ -14,8 +14,6 @@ require_relative 'menu'
 
 class GameWindow < Gosu::Window
 	def initialize width, height, fullscreen = false
-		
-		
 		$window = self
 		@width = width
 		@height = height
@@ -25,8 +23,12 @@ class GameWindow < Gosu::Window
 		
 		self.caption = "Menu Demo"
 		@menu = Menu.new(self)
+		
+		generate
+	end
 
-		$map = Map.new
+	def generate
+		$map = Map.new(8000, 6000, -8000, -6000)
 
 		@x = 32
 		@y = 418
@@ -48,8 +50,8 @@ class GameWindow < Gosu::Window
 		@jumpStone3 = Tile.new(true, true, @model, @x3, @y3)
 		@jumpStone4 = Tile.new(true, true, @model, @x3+64, @y3)
 		@jumpStone5 = Tile.new(true, true, @model, @x3+128, @y3)
-		@player = Player.new(true, true, @player_model, 100, 100, 5, Hash.new)
-		@sprite = Sprite.new(true, true, @sprite_model, 100, 300, 5, Hash.new)
+		$player = Player.new(true, true, @player_model, 400, 300, Hash.new)
+		@sprite = Sprite.new(true, true, @sprite_model, 100, 100, Hash.new)
 
 		$map.add(@jumpStone)
 		$map.add(@jumpStone2)
@@ -57,17 +59,14 @@ class GameWindow < Gosu::Window
 		$map.add(@jumpStone4)
 		$map.add(@jumpStone5)
 		$map.add(@sprite)
-		$map.add(@player)
-		
-		
-		draw_line_one
-	end
-
-	def draw_line_one
+		$map.add($player)
 		@stoneA = Array.new
-		for i in 0..12
+		for i in 0..42
 			@stoneA[i] = Tile.new(true, true, @model, i*64-32, 568)
 			$map.add(@stoneA[i])
+		end
+		for i in 0..11
+			$map.add(Tile.new(true, true, @model, -32, i*64))
 		end
 	end
 	def update
@@ -92,7 +91,6 @@ class GameWindow < Gosu::Window
 			end
 		end
 		$map.each { |object| object.draw }
-		@bullet.draw(500, 500, 0)
 	end
 	
 	def button_down(id)

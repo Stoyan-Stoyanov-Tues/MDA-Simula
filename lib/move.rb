@@ -11,7 +11,8 @@ module Move
 		
 		@direction = :right
 	
-		@speed = 5
+		@speed = @move_distance
+	
 		@gravity = Global::GRAVITY
 		
 		@scale_x = Math.cos(0 * Math::PI / 180)
