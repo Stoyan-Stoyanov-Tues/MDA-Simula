@@ -1,0 +1,32 @@
+require './sprite'
+require './mobject'
+require './move.rb'
+require './base_collision'
+require './stat'
+require 'time'
+
+class Unit < Sprite
+	def command?(key)
+		@next_command == key
+	end
+	
+	def update
+		ai()
+		moving()
+		destroy()
+	end
+	
+	def ai
+		if $player.pos_y == @pos_y
+			distance = @pos_x - $player.pos_x
+			if (distance < 0 && @direction == :right) || (distance > 0 && @direction == :left)
+				@next_command = Gosu::KbR
+			end
+		else
+			case @direction
+				when :left 	@next_command = Gosu::KbLeft
+				when :right @next_command = Gosu::KbRight
+			end
+		end
+	end
+end

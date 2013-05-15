@@ -10,6 +10,7 @@ require './sprite'
 require 'benchmark'
 # require './game'
 require './player'
+require './unit'
 require_relative 'menu'
 
 class GameWindow < Gosu::Window
@@ -25,8 +26,14 @@ class GameWindow < Gosu::Window
 		@menu = Menu.new(self)
 		
 		generate
+		spawn
 	end
-
+	
+	def spawn
+		@unit = Unit.new(true, true, @player_model, 500, 300, Hash.new)
+		$map.add(@unit)
+	end
+	
 	def generate
 		$map = Map.new(8000, 6000, -8000, -6000)
 
@@ -67,6 +74,9 @@ class GameWindow < Gosu::Window
 		end
 		for i in 0..11
 			$map.add(Tile.new(true, true, @model, -32, i*64))
+		end
+		for i in 0..11
+			$map.add(Tile.new(true, true, @model, 600, i*64))
 		end
 	end
 	def update
