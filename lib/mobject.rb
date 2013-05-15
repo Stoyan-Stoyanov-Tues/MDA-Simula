@@ -22,7 +22,7 @@ class Mobject
 	
 	# every object can be "drawn"
 	def draw
-		@virtual_model.image.draw_rot(@pos_x, @pos_y, 0, 0,
+		@virtual_model.image.draw_rot(@pos_x + $player.camera_x, @pos_y + $player.camera_y, 0, 0,
 		 @virtual_center_x.to_f/@virtual_model.image.width,
 		 @virtual_center_x.to_f/@virtual_model.image.height)
 	end

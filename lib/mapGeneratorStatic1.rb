@@ -48,7 +48,7 @@ class GameWindow < Gosu::Window
 		@jumpStone3 = Tile.new(true, true, @model, @x3, @y3)
 		@jumpStone4 = Tile.new(true, true, @model, @x3+64, @y3)
 		@jumpStone5 = Tile.new(true, true, @model, @x3+128, @y3)
-		@player = Player.new(true, true, @player_model, 100, 100, 5, Hash.new)
+		$player = Player.new(true, true, @player_model, 100, 100, 5, Hash.new)
 		@sprite = Sprite.new(true, true, @sprite_model, 100, 300, 5, Hash.new)
 
 		$map.add(@jumpStone)
@@ -57,7 +57,7 @@ class GameWindow < Gosu::Window
 		$map.add(@jumpStone4)
 		$map.add(@jumpStone5)
 		$map.add(@sprite)
-		$map.add(@player)
+		$map.add($player)
 		
 		
 		draw_line_one

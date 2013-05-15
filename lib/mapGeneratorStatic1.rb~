@@ -96,7 +96,6 @@ class GameWindow < Gosu::Window
 	end
 	
 	def button_down(id)
-		p $map.map.size
 		@menu.catch_key(id)
 	end
 end
