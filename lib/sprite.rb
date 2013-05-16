@@ -34,8 +34,8 @@ class Sprite < Mobject
 		if (Time.now.to_f - @last_attack_time > @stat.as)
 			@last_attack_time = Time.now.to_f
 			pos = 0
-			pos = @pos_x - (@virtual_model.width+0.5) if @direction == :left
-			pos = @pos_x + (@virtual_model.width+0.5) if @direction == :right
+			pos = @pos_x - (@virtual_model.width/2+@range_attack_model.width/2) if @direction == :left
+			pos = @pos_x + (@virtual_model.width/2+@range_attack_model.width/2) if @direction == :right
 	
 			range_attack = RangeAttack.new(true, false, @range_attack_model, pos, @pos_y, Hash.new, @direction)
 			$map.add(range_attack)

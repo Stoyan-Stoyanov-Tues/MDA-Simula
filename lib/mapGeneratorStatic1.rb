@@ -26,12 +26,6 @@ class GameWindow < Gosu::Window
 		@menu = Menu.new(self)
 		
 		generate
-		spawn
-	end
-	
-	def spawn
-		@unit = Unit.new(true, true, @player_model, 500, 300, Hash.new)
-		$map.add(@unit)
 	end
 	
 	def generate
@@ -46,26 +40,24 @@ class GameWindow < Gosu::Window
 
 		@tile0 = Gosu::Image.new(self, 'media/tiles/tile0.bmp', false)
 		@image = Gosu::Image.new(self, 'media/sprites/drabon.png', false)
+		@sprite_image = Gosu::Image.new(self, 'media/sprites/darinx.png', false)
 		@bullet = Gosu::Image.new(self, 'bullet.png', false)
-		@sprite = Gosu::Image.new(self, 'pr4.png', false)
 
 		@model = Constructor::create_virtual_model(@tile0)
 		@player_model = Constructor::create_virtual_model(@image)
-		@sprite_model = Constructor::create_virtual_model(@sprite)
+		@sprite_model = Constructor::create_virtual_model(@sprite_image)
 		@jumpStone = Tile.new(true, true, @model, @x, @y)
 		@jumpStone2 = Tile.new(true, true, @model, @x2, @y2)
 		@jumpStone3 = Tile.new(true, true, @model, @x3, @y3)
 		@jumpStone4 = Tile.new(true, true, @model, @x3+64, @y3)
 		@jumpStone5 = Tile.new(true, true, @model, @x3+128, @y3)
 		$player = Player.new(true, true, @player_model, 400, 300, Hash.new)
-		@sprite = Sprite.new(true, true, @sprite_model, 100, 100, Hash.new)
 
 		$map.add(@jumpStone)
 		$map.add(@jumpStone2)
 		$map.add(@jumpStone3)
 		$map.add(@jumpStone4)
 		$map.add(@jumpStone5)
-		$map.add(@sprite)
 		$map.add($player)
 		@stoneA = Array.new
 		for i in 0..42
@@ -79,6 +71,8 @@ class GameWindow < Gosu::Window
 			$map.add(Tile.new(true, true, @model, 600, i*64))
 		end
 		@game_over = Gosu::Image.new(self, 'media/game_over.png', false)
+		@unit = Unit.new(true, true, @sprite_model, 500, 300, Hash.new, 'bullet2.png')
+		$map.add(@unit)
 	end
 	def update
 		#@menu.turn_on if self.button_down(Gosu::KbEscape)
