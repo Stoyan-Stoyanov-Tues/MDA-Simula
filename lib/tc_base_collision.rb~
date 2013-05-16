@@ -1,6 +1,4 @@
-#require './require_all'
-require 'test/unit'
-require './base_collision' 
+require './require_all' 
  
 class TestBaseCollision < Test::Unit::TestCase
 	def setup

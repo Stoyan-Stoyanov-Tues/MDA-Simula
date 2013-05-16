@@ -54,33 +54,12 @@ class Constructor
 		# build around the "actual object" inside an image
 		radius = array[0][2]/2
 		center = Point.new( (array[0][0].x - array[0][1].x).abs/2 , (array[0][0].y - array[0][1].y).abs/2 )
-		height = bottom.y - top.y 
+		height = bottom.y - top.y
 		width = right.x - left.x
 		rectangle_center_x = left.x + width/2
-		rectangle_center_y = top.y + height/2
+		rectangle_center_y = top.y + height/2 
 		# preferred_collision = height*width > radius*radius*Math::PI ? :circle : :rectangle
 		preferred_collision = :rectangle
 		VirtualModel.new(image, center, radius, width, height, rectangle_center_x, rectangle_center_y, preferred_collision)
-	end
-	
-	def self.create_animations(window, tiles, width, height, order)
-		animations = {}
-		order.each { |type| animations[type] = Array.new }
-		loaded_tiles = Gosu::Image.load_tiles(window, tiles, width, height, false)
-		loaded_tiles.each_with_index { |elem, index| animations[ order[index] ] << self.create_virtual_model(elem)}
-		animations
-	end
-	
-	def self.sprite(window, tiles, width, height, order, do_collision, solid, virtual_model, pos_x, pos_y, move_distance)
-		animations = self.create_animations(window, tiles, width, height, order)
-		Sprite.new(do_collision, solid, virtual_model, pos_x, pos_y, move_distance, animations)
-	end
-	
-	def self.player
-	
-	end
-	
-	def self.tile
-	
 	end
 end
