@@ -17,8 +17,6 @@ class TestConstructor < Test::Unit::TestCase
 		assert_equal(@image.width-1, virtual_model.width)
 		assert_equal(@image.width/2-1, virtual_model.rectangle_center_x)
 		assert_equal(:rectangle, virtual_model.collision)
-		z = Point.new(0,0)
-		p z.x
 	end
 	
 	def test_get_stats
