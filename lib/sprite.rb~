@@ -47,27 +47,8 @@ class RangeAttack < Sprite
 	def initialize(do_collision, solid, virtual_model, pos_x, pos_y, animations, direction)
 		super(do_collision, solid, virtual_model, pos_x, pos_y, animations)
 		@direction = direction
-	end
-	
-	def init
-		@oposite_move = {:up => :down, :down => :up, :left => :right, :right => :left}
-		
-		@collision_effect
-		@field_effects = Array.new
-		
-		@jumping = false
-		
-		@direction = :right
-	
-		@speed = 10
-	
-		@gravity = Global::GRAVITY
-		
-		@scale_x = Math.cos(0 * Math::PI / 180)
-		@scale_y = Math.sin(90 * Math::PI / 180)
-		
-		@velocity_x = @speed*@scale_x	
-		@velocity_y = @speed*@scale_y
+		@velocity_x = 15 * @scale_x
+		@velocity_y = 15 * @scale_y
 	end
 	
 	def do_collision_effect(object)

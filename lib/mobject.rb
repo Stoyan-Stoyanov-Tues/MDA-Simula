@@ -24,12 +24,12 @@ class Mobject
 	def draw
 		@virtual_model.image.draw_rot(@pos_x + $player.camera_x, @pos_y + $player.camera_y, 0, 0,
 		 @virtual_center_x.to_f/@virtual_model.image.width,
-		 @virtual_center_x.to_f/@virtual_model.image.height)
+		 @virtual_center_y.to_f/@virtual_model.image.height)
 	end
 	
 	# every object can be "update"
 	def	update
-		self.destroy()
+		destroy()
 	end
 	
 	# in case we need it for every mobject

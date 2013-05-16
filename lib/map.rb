@@ -24,4 +24,8 @@ class Map
 	def outside?(object)
 		object.pos_x > @width || object.pos_x < @width_min || object.pos_y > @height || object.pos_y < @height_min
 	end
+	
+	def include?(object)
+		@map.include?(object)	
+	end
 end

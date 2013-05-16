@@ -22,8 +22,8 @@ class Sprite < Mobject
 	end
 	
 	def update
-		self.moving()
-		self.destroy()
+		moving()
+		destroy()
 	end
 	
 	def command?(key)

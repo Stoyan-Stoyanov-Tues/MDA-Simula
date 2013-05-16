@@ -78,6 +78,7 @@ class GameWindow < Gosu::Window
 		for i in 0..11
 			$map.add(Tile.new(true, true, @model, 600, i*64))
 		end
+		@game_over = Gosu::Image.new(self, 'media/game_over.png', false)
 	end
 	def update
 		#@menu.turn_on if self.button_down(Gosu::KbEscape)
@@ -101,6 +102,9 @@ class GameWindow < Gosu::Window
 			end
 		end
 		$map.each { |object| object.draw }
+		if !$map.include?($player)
+			@game_over.draw(0, 0, 0.5)
+		end
 	end
 	
 	def button_down(id)
