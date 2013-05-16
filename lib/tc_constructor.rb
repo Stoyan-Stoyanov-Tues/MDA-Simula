@@ -26,6 +26,5 @@ class TestConstructor < Test::Unit::TestCase
 		assert_equal(@image.width-1, virtual_model2.width)
 		assert_equal(@image.width/2-1, virtual_model2.rectangle_center_x)
 		assert_equal(:rectangle, virtual_model2.collision)
-		p "hi"
 	end
 end
