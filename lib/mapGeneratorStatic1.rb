@@ -40,19 +40,24 @@ class GameWindow < Gosu::Window
 
 		@tile0 = Gosu::Image.new(self, 'media/tiles/tile0.bmp', false)
 		@image = Gosu::Image.new(self, 'media/sprites/drabon.png', false)
+		@image_right = Gosu::Image.new(self, 'media/sprites/drabon_right.png', false)
 		@sprite_image = Gosu::Image.new(self, 'media/sprites/darinx.png', false)
+		@sprite_image_right = Gosu::Image.new(self, 'media/sprites/darinx_right.png', false)
 		@bullet = Gosu::Image.new(self, 'bullet.png', false)
 
 		@model = Constructor::create_virtual_model(@tile0)
 		@player_model = Constructor::create_virtual_model(@image)
+		@player_model_right = Constructor::create_virtual_model(@image_right)
 		@sprite_model = Constructor::create_virtual_model(@sprite_image)
+		@sprite_model_right = Constructor::create_virtual_model(@sprite_image_right)
 		@jumpStone = Tile.new(true, true, @model, @x, @y)
 		@jumpStone2 = Tile.new(true, true, @model, @x2, @y2)
 		@jumpStone3 = Tile.new(true, true, @model, @x3, @y3)
 		@jumpStone4 = Tile.new(true, true, @model, @x3+64, @y3)
 		@jumpStone5 = Tile.new(true, true, @model, @x3+128, @y3)
-		$player = Player.new(true, true, @player_model, 400, 300, Hash.new)
-
+		$player = Player.new(true, true, @player_model, 400, 300, {:turn_left => @player_model, :turn_right => @player_model_right});
+		@unit = Unit.new(true, true, @sprite_model, 500, 300, {:turn_left => @sprite_model, :turn_right => @sprite_model_right}, 'bullet2.png')
+		$map.add(@unit)
 		$map.add(@jumpStone)
 		$map.add(@jumpStone2)
 		$map.add(@jumpStone3)
@@ -71,8 +76,7 @@ class GameWindow < Gosu::Window
 			$map.add(Tile.new(true, true, @model, 600, i*64))
 		end
 		@game_over = Gosu::Image.new(self, 'media/game_over.png', false)
-		@unit = Unit.new(true, true, @sprite_model, 500, 300, Hash.new, 'bullet2.png')
-		$map.add(@unit)
+		
 	end
 	def update
 		#@menu.turn_on if self.button_down(Gosu::KbEscape)

@@ -119,6 +119,12 @@ module Move
 	
 	def look(direction)
 		@direction = direction
+		#if @direction == :right
+		#	@virtual_model.image = @animations[:turn_right].image
+		#end
+		#if @direction == :left
+		#	@virtual_model.image = @animations[:turn_left].image
+		#end
 	end
 	
 	def squat

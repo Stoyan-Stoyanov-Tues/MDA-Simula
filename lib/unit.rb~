@@ -17,7 +17,7 @@ class Unit < Sprite
 	end
 	
 	def ai
-		if $player.pos_y == (@pos_y-20)...(@pos_y+20)
+		if $player.pos_y >= @pos_y-20 && $player.pos_y <= @pos_y+20
 			distance = @pos_x - $player.pos_x
 			if (distance < 0 && @direction == :right) || (distance > 0 && @direction == :left)
 				@next_command = Gosu::KbR

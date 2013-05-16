@@ -29,11 +29,7 @@ class Mobject
 	
 	# every object can be "update"
 	def	update
-		self.destroy()
-	end
-	
-	# in case we need it for every mobject
-	def move(move_type)
+		destroy()
 	end
 	
 	def destroy

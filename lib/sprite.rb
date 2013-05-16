@@ -15,6 +15,7 @@ class Sprite < Mobject
 		@stat = Stat.new
 		@move_distance = @stat.ms
 		@animations = animations
+		@virtual_model = @virtual_model
 		self.init	# initialize some instance variables
 		@range_attack_image = Gosu::Image.new($window, range_attack_image, true)
 		@range_attack_model = Constructor.create_virtual_model(@range_attack_image)
