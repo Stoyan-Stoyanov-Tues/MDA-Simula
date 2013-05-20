@@ -22,7 +22,7 @@ class GameWindow < Gosu::Window
 
 		super(@width, @height, @fullscreen)
 		
-		self.caption = "Menu Demo"
+		self.caption = "Game Demo"
 		@menu = Menu.new(self)
 		
 		generate
@@ -56,7 +56,7 @@ class GameWindow < Gosu::Window
 		@jumpStone4 = Tile.new(true, true, @model, @x3+64, @y3)
 		@jumpStone5 = Tile.new(true, true, @model, @x3+128, @y3)
 		$player = Player.new(true, true, @player_model, 400, 300, {:turn_left => @player_model, :turn_right => @player_model_right});
-		@unit = Unit.new(true, true, @sprite_model, 500, 300, {:turn_left => @sprite_model, :turn_right => @sprite_model_right}, 'bullet2.png')
+		@unit = Unit.new(true, true, @sprite_model, 500, 300, {:turn_left => @sprite_model, :turn_right => @sprite_model_right}, '../media/stuffs/bullet2.png')
 		$map.add(@unit)
 		$map.add(@jumpStone)
 		$map.add(@jumpStone2)
