@@ -1,4 +1,4 @@
-require './move.rb'
+require_relative './move.rb'
 =begin
 	Probaly all obejcts will inherit Mobject.
 =end

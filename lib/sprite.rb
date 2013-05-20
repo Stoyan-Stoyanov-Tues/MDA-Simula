@@ -1,7 +1,7 @@
-require './mobject'
-require './move.rb'
-require './base_collision'
-require './stat'
+require_relative './mobject'
+require_relative './move.rb'
+require_relative './base_collision'
+require_relative './stat'
 require 'time'
 
 class Sprite < Mobject
@@ -10,7 +10,7 @@ class Sprite < Mobject
 	
 	attr_accessor :move_distance
 	
-	def initialize(do_collision, solid, virtual_model, pos_x, pos_y, animations, range_attack_image = 'bullet.png')
+	def initialize(do_collision, solid, virtual_model, pos_x, pos_y, animations, range_attack_image = '../media/stuffs/bullet.png')
 		super(do_collision, solid, virtual_model, pos_x, pos_y)
 		@stat = Stat.new
 		@move_distance = @stat.ms

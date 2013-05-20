@@ -1,9 +1,9 @@
-require './sprite'
+require_relative './sprite'
 
 class Player < Sprite
 	attr_accessor :camera_x, :camera_y
-	def initialize(do_collision, solid, virtual_model, pos_x, pos_y, animations, range_attack_image = 'bullet.png')
-		super(do_collision, solid, virtual_model, pos_x, pos_y, animations, range_attack_image = 'bullet.png')
+	def initialize(do_collision, solid, virtual_model, pos_x, pos_y, animations, range_attack_image = '../media/stuffs/bullet.png')
+		super(do_collision, solid, virtual_model, pos_x, pos_y, animations, range_attack_image = '../media/stuffs/bullet.png')
 		@camera_x = 0
 		@camera_y = 0
 	end

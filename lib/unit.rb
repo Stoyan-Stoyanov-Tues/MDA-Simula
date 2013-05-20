@@ -1,8 +1,8 @@
-require './sprite'
-require './mobject'
-require './move.rb'
-require './base_collision'
-require './stat'
+require_relative './sprite'
+require_relative './mobject'
+require_relative './move.rb'
+require_relative './base_collision'
+require_relative './stat'
 require 'time'
 
 class Unit < Sprite

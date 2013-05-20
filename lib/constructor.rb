@@ -1,9 +1,9 @@
 require 'gosu'
-require './player'
-require './tile'
-require './sprite'
-require './point'
-require './virtual_model'
+require_relative './player'
+require_relative './tile'
+require_relative './sprite'
+require_relative './point'
+require_relative './virtual_model'
 
 class Constructor
 	def	self.create_virtual_model(image)

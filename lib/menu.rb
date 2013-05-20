@@ -26,9 +26,9 @@ attr_accessor :lastKP, :isOn
 		@window = window
 		@menuPos = 0
 		@menuSeq = seq_init
-		@playlist = Gosu::Song.new(@window, 'media/menu/title_screen.ogg');
+		@playlist = Gosu::Song.new(@window, '../media/menu/title_screen.ogg');
 		@playlist.play
-		@moveSound = Gosu::Sample.new(@window, 'media/menu/sfx.ogg')
+		@moveSound = Gosu::Sample.new(@window, '../media/menu/sfx.ogg')
 		@lockC = 0
 		@menu_active = true
 		
@@ -110,15 +110,15 @@ attr_accessor :lastKP, :isOn
 		
 	def seq_init
 		pictures = Array.new(4)
-		pictures[0] = Gosu::Image.new(@window, 'media/menu/new game.png', true)
-		pictures[1] = Gosu::Image.new(@window, 'media/menu/load game.png', true)
-		pictures[2] = Gosu::Image.new(@window, 'media/menu/highscores.png', true)
-		pictures[3] = Gosu::Image.new(@window, 'media/menu/exit.png', true)
+		pictures[0] = Gosu::Image.new(@window, '../media/menu/new game.png', true)
+		pictures[1] = Gosu::Image.new(@window, '../media/menu/load game.png', true)
+		pictures[2] = Gosu::Image.new(@window, '../media/menu/highscores.png', true)
+		pictures[3] = Gosu::Image.new(@window, '../media/menu/exit.png', true)
 		return pictures
 	end
 	
 	def plist_init
-		playlist = Gosu::Song.new(@window, 'media/menu/train-interior-1.wav');
+		playlist = Gosu::Song.new(@window, '../media/menu/train-interior-1.wav');
 	end
 	
 	def  holdLocked?		

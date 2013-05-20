@@ -43,7 +43,7 @@ class GameWindow < Gosu::Window
 		@image_right = Gosu::Image.new(self, '../media/sprites/drabon_right.png', false)
 		@sprite_image = Gosu::Image.new(self, '../media/sprites/darinx.png', false)
 		@sprite_image_right = Gosu::Image.new(self, '../media/sprites/darinx_right.png', false)
-		@bullet = Gosu::Image.new(self, '../media/stuffs/bullet.png', false)
+		@bullet = Gosu::Image.new(self, '..media/stuffs/bullet.png', false)
 
 		@model = Constructor::create_virtual_model(@tile0)
 		@player_model = Constructor::create_virtual_model(@image)
