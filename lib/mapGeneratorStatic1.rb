@@ -78,11 +78,13 @@ class GameWindow < Gosu::Window
 	end
 	def update
 		#@menu.turn_on if self.button_down(Gosu::KbEscape)
-		$map.each { |object| object.update }
+		
 		if @menu.isOn
 			if button_down?(@menu.lastKP)
 				@menu.control_hold(@menu.lastKP)
 			end
+		else 
+			$map.each { |object| object.update }
 		end
 	end
 
