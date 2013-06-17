@@ -20,7 +20,7 @@ TIME_INTERVAL = 24
 
 attr_accessor :lastKP, :isOn
 
-	attr_accessor :menu_active
+attr_accessor :menu_active
 
 	def initialize(window)
 		@window = window
